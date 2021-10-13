@@ -32,7 +32,7 @@ func getKubeMqClient(ctx context.Context) FuncKubeMqClient {
 	}
 }
 
-func publish(ctx context.Context, pubClient *kubemq.EventsClient, cleanedBlock *CleanedBlock) {
+func publish(ctx context.Context, pubClient kubemq.EventsClient, cleanedBlock CleanedBlock) {
 	jsonified, err := json.Marshal(cleanedBlock)
 	if err != nil {
 		log.Fatal().Msg(err.Error())
@@ -97,8 +97,7 @@ func main() {
 			if err != nil {
 				log.Fatal().Msg(err.Error())
 			}
-			formattedBlock := formatBlock(block)
-			go publish(ctx, pubClient, &formattedBlock)
+			go publish(ctx, *pubClient, formatBlock(block))
 		}
 	}
 }

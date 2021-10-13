@@ -3,3 +3,6 @@ build:
 
 run:
 	go run main.go
+
+benchmark:
+	go test -run=Bench -bench=.
