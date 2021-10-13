@@ -47,18 +47,18 @@ func publish(ctx context.Context, pubClient *kubemq.EventsClient, cleanedBlock *
 }
 
 type CleanedBlock struct {
-	Hash         string
-	Number       uint64
-	Time         uint64
-	Transactions int
+	Hash             string `json:"hash"`
+	Number           uint64 `json:"number"`
+	Time             uint64 `json:"time"`
+	TransactionCount int    `json:"transactionCount"`
 }
 
 func formatBlock(block *types.Block) CleanedBlock {
 	cleanedBlock := CleanedBlock{
-		Hash:         block.Hash().Hex(),
-		Number:       block.Number().Uint64(),
-		Time:         block.Time(),
-		Transactions: len(block.Transactions()),
+		Hash:             block.Hash().Hex(),
+		Number:           block.Number().Uint64(),
+		Time:             block.Time(),
+		TransactionCount: len(block.Transactions()),
 	}
 	return cleanedBlock
 }
