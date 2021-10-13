@@ -1,4 +1,4 @@
-module test.com/mod
+module github.com/rymnc/geth-client-example
 
 go 1.16
 
